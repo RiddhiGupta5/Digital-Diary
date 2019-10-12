@@ -1,1 +1,1 @@
-# Digigtal-Diary
+# Digital-Diary
