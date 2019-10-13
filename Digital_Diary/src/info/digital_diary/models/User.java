@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  */
 public class User {
 	
-	private String email; //Used as Primary key
+	private String email; //Used unique constraint
 	private String name;
 	private String password;
 	private String dateOfSignup;

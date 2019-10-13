@@ -40,8 +40,7 @@ public class UserConverter {
 		u.setLocality((String) doc.get("locality"));
 		u.setCity((String) doc.get("city"));
 		u.setCountry((String) doc.get("country"));
-		ObjectId email = (ObjectId) doc.get("_id");
-		u.setEmail(email.toString());
+		u.setEmail((String) doc.get("email"));
 		return u;
 
 	}

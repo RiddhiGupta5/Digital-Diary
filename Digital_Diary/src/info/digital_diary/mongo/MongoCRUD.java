@@ -11,8 +11,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoWriteException;
 import com.mongodb.DBObject;
 
-import info.digital_diary.converters.UserConverter;
-import info.digital_diary.models.User;
+import info.digital_diary.converters.*;
+import info.digital_diary.models.*;
 
 public class MongoCRUD {
 	
@@ -52,6 +52,38 @@ public class MongoCRUD {
 			{
 				return false;
 			}
+	        return true;
+	    } catch (MongoWriteException e) {
+	    	return false;
+	    }
+	}
+	
+	public boolean insertKeyNote(Keynotes k)
+	{
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		DB db = mongoClient.getDB("digital_diary");
+		DBCollection col = db.getCollection("Keynotes");
+		
+		DBObject doc = KeynotesConverter.toDBObject(k);
+		
+		try {
+	        col.insert(doc);
+	        return true;
+	    } catch (MongoWriteException e) {
+	    	return false;
+	    }
+	}
+	
+	public boolean insertContact(Contacts c)
+	{
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		DB db = mongoClient.getDB("digital_diary");
+		DBCollection col = db.getCollection("Contacts");
+		
+		DBObject doc = ContactsConverter.toDBObject(c);
+		
+		try {
+	        col.insert(doc);
 	        return true;
 	    } catch (MongoWriteException e) {
 	    	return false;
