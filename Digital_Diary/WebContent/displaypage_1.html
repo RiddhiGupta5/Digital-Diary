@@ -9,7 +9,6 @@
   background-color: #333;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 .navbar a {
   float: left;
   font-size: 16px;
@@ -18,12 +17,10 @@
   padding: 14px 16px;
   text-decoration: none;
 }
-
 .dropdown {
   float: left;
   overflow: hidden;
 }
-
 .dropdown .dropbtn {
   cursor: pointer;
   font-size: 16px;
@@ -35,11 +32,9 @@
   font-family: inherit;
   margin: 0;
 }
-
 .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
   background-color: red;
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -48,7 +43,6 @@
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-
 .dropdown-content a {
   float: none;
   color: black;
@@ -57,11 +51,9 @@
   display: block;
   text-align: left;
 }
-
 .dropdown-content a:hover {
   background-color: #ddd;
 }
-
 .show {
   display: block;
 }
@@ -77,13 +69,14 @@
 <body>
 
   <div class="navbar">
+    <a href="login.html">LOGIN</a>
     <div class="dropdown">
     <button class="dropbtn" onclick="myFunction1()">Reminders
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content" id="myDropdown1">
-      <a href="#">Add Reminder</a>
-      <a href="#">View Reminders</a>
+      <a href="remainder1.html">Add Reminder</a>
+      <a href="displaypage_with_date.html">View Reminders</a>
     </div>
     </div>
     <div class="dropdown">
@@ -91,8 +84,8 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content" id="myDropdown2">
-      <a href="#">Add Key Note</a>
-      <a href="#">View Key Note</a>
+      <a href="keynotes1.html">Add Key Note</a>
+      <a href="displaypage_1.html">View Key Note</a>
     </div>
     </div>
     <div class="dropdown">
@@ -100,8 +93,8 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content" id="myDropdown3">
-      <a href="#">Add Contact</a>
-      <a href="#">View Contact</a>
+      <a href="contacts1.html">Add Contact</a>
+      <a href="displaypage_with_date.html">View Contact</a>
     </div>
     </div>
     <div class="dropdown">
@@ -109,8 +102,8 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content" id="myDropdown4">
-      <a href="#">Add to Schedule</a>
-      <a href="#">View Schedule</a>
+      <a href="schedule1.html">Add to Schedule</a>
+      <a href="displaypage_with_date.html">View Schedule</a>
     </div>
     </div>
     <div class="dropdown">
@@ -118,8 +111,8 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content" id="myDropdown5">
-      <a href="#">Add Review</a>
-      <a href="#">View Reminders</a>
+      <a href="review1.html">Add Review</a>
+      <a href="displaypage_with_date.html">View Review</a>
     </div>
     </div>
     <div class="topnav-right">
@@ -137,7 +130,6 @@ toggle between hiding and showing the dropdown content */
 function myFunction1() {
   document.getElementById("myDropdown1").classList.toggle("show");
 }
-
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {
@@ -150,7 +142,6 @@ window.onclick = function(e) {
 function myFunction2() {
   document.getElementById("myDropdown2").classList.toggle("show");
 }
-
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {
@@ -163,7 +154,6 @@ window.onclick = function(e) {
 function myFunction3() {
   document.getElementById("myDropdown3").classList.toggle("show");
 }
-
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {
@@ -176,7 +166,6 @@ window.onclick = function(e) {
 function myFunction4() {
   document.getElementById("myDropdown4").classList.toggle("show");
 }
-
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {
@@ -189,7 +178,6 @@ window.onclick = function(e) {
 function myFunction5() {
   document.getElementById("myDropdown5").classList.toggle("show");
 }
-
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {
