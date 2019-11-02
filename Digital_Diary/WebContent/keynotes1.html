@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+input[type=text] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+  background-color: red;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+.show {
+  display: block;
+}
+textarea{
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+li {
+  float: left;
+}
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+li a:hover:not(.active) {
+  background-color: #111;
+}
+.active {
+  background-color: #2F4F4F;
+}
+button {
+  background-color: #2F4F4F;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+}
+button:hover {
+  opacity: 0.8;
+}
+.container {
+  padding-bottom: 50px;
+  padding: 16px;
+}
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+.topnav-right {
+  float: right;
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+
+
+
+</style>
+<body>
+
+  <div class="navbar">
+    <a href="login.html">LOGIN</a>
+    <div class="dropdown">
+    <button class="dropbtn" onclick="myFunction1()">Reminders
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" id="myDropdown1">
+      <a href="remainder1.html">Add Reminder</a>
+      <a href="displaypage_with_date.html">View Reminders</a>
+    </div>
+    </div>
+    <div class="dropdown">
+    <button class="dropbtn" onclick="myFunction2()">Key Notes
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" id="myDropdown2">
+      <a href="keynotes1.html">Add Key Note</a>
+      <a href="displaypage_1.html">View Key Note</a>
+    </div>
+    </div>
+    <div class="dropdown">
+    <button class="dropbtn" onclick="myFunction3()">Contacts
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" id="myDropdown3">
+      <a href="contacts1.html">Add Contact</a>
+      <a href="displaypage_with_date.html">View Contact</a>
+    </div>
+    </div>
+    <div class="dropdown">
+    <button class="dropbtn" onclick="myFunction4()">Schedule
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" id="myDropdown4">
+      <a href="schedule1.html">Add to Schedule</a>
+      <a href="displaypage_with_date.html">View Schedule</a>
+    </div>
+    </div>
+    <div class="dropdown">
+    <button class="dropbtn" onclick="myFunction5()">Review
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" id="myDropdown5">
+      <a href="review1.html">Add Review</a>
+      <a href="displaypage_with_date.html">View Review</a>
+    </div>
+    </div>
+     <div class="topnav-right">
+      <a href="#">LOG OUT</a>
+     </div>
+    
+  </div>
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction1() {
+  document.getElementById("myDropdown1").classList.toggle("show");
+}
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown1");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+function myFunction2() {
+  document.getElementById("myDropdown2").classList.toggle("show");
+}
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown2");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+function myFunction3() {
+  document.getElementById("myDropdown3").classList.toggle("show");
+}
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown3");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+function myFunction4() {
+  document.getElementById("myDropdown4").classList.toggle("show");
+}
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown4");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+function myFunction5() {
+  document.getElementById("myDropdown5").classList.toggle("show");
+}
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown5");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+</script>
+<h1 style="text-align:center">KEY NOTES</h1>
+<form>
+<div class="container">
+
+
+    <label for="email"><b>EMAIL ID</b></label>
+    <input type="text" placeholder="Enter email id" name="email" required><br><br>
+
+
+    <b>NOTES</b><br>
+
+    <textarea name="notes" rows="10" cols="50" placeholder="Enter your notes" name="notes"  required></textarea><br>
+     
+     <button type="submit">SAVE NOTES</button>
+    </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+     <button type="button" class="cancelbtn">Cancel</button>
+</div>
+</form>
+
+
+
+
+</body>
+</html>     
