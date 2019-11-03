@@ -19,7 +19,7 @@ public class KeynotesConverter {
 
 		// convert DBObject Object to User
 		// take special note of converting ObjectId to String
-		public static Keynotes toUser(DBObject doc) {
+		public static Keynotes toKeynote(DBObject doc) {
 			Keynotes k = new Keynotes();
 			k.setUserEmail((String) doc.get("userEmail"));
 			k.setNote((String) doc.get("note"));

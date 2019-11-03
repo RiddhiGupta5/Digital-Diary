@@ -24,7 +24,7 @@ public class ContactsConverter {
 
 	// convert DBObject Object to User
 	// take special note of converting ObjectId to String
-	public static Contacts toUser(DBObject doc) {
+	public static Contacts toContact(DBObject doc) {
 		Contacts c = new Contacts();
 		c.setName((String) doc.get("name"));
 		c.setDate((String) doc.get("date"));

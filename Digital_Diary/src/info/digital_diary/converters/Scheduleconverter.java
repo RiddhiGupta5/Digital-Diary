@@ -1,34 +1,28 @@
-package info.digitaldiary.converters;
+package info.digital_diary.converters;
 
 import org.bson.types.ObjectId;
 
-import info.digitaldiary.models.*;
+import info.digital_diary.models.*;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
-public class Scheduleconverter{
+public class ScheduleConverter{
 	     
-	public static DBObject toDBObject(Schedule s) {
+	public static DBObject toDBObject(Schedules s) {
 		BasicDBObjectBuilder builder = BasicDBObjectBuilder.start()
-		 .append("useremailid",s.getuseremailid())
+		 .append("userEmail",s.getuseremailid())
 		 .append("date",s.getDate())
-		 .append("Activity",s.getActivity())
-		 .append("time",s.gettime());
+		 .append("activity",s.getActivity())
+		 .append("time",s.gettime())
+		 .append("location", s.getLocation());
 		return builder.get();
 	}
-	public static Schedule toUser (DBObject doc) {
-		Schedule s=new Schedule();
-		s.setuseremailid((String) doc.get("useremailid"));
+	public static Schedules toSchedule (DBObject doc) {
+		Schedules s=new Schedules();
+		s.setuseremailid((String) doc.get("userEmail"));
 		s.setDate((String) doc.get("date"));
-		s.setActivity((String) doc.get("Activity"));
+		s.setActivity((String) doc.get("activity"));
 		s.settime((String) doc.get("time"));
+		s.setLocation((String) doc.get("location"));
 		return s;
-	}
-	
-		
-		
-		
-		
-		
-	
-	
+	}	
 }

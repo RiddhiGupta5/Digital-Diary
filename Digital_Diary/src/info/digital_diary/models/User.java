@@ -107,7 +107,7 @@ public class User {
 	}
 
 	public void setGender(String gender) {
-		if (!Pattern.matches("^[FM]", gender)) {
+		if (!Pattern.matches("^[FMmf]", gender)) {
 			throw new IllegalArgumentException("Invalid gender");
 		}
 		this.gender = gender;

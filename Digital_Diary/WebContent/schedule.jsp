@@ -1,14 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title> Keynotes </title>
-</head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 form {border: 3px solid #f1f1f1;}
-input[type=text] {
+input[type=text],input[type = text] {
   width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -69,34 +69,6 @@ input[type=text] {
 .show {
   display: block;
 }
-textarea{
-  width: 50%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-li {
-  float: left;
-}
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-li a:hover:not(.active) {
-  background-color: #111;
-}
 .active {
   background-color: #2F4F4F;
 }
@@ -138,12 +110,10 @@ span.psw {
      width: 100%;
   }
 }
-
-
-
 </style>
+<title>Schedule</title>
+</head>
 <body>
-
   <%
 		String userName = null;
 		Cookie[] cookies = request.getCookies();
@@ -205,6 +175,7 @@ span.psw {
     <a href="Logout">Logout</a>
   </div>
   </div>
+
 
 <script>
 /* When the user clicks on the button,
@@ -270,11 +241,12 @@ window.onclick = function(e) {
   }
 }
 </script>
-<h1 style="text-align:center">KEY NOTES</h1>
-<form method="post" action="Keynote">
-<div class="container">
+<h2>Schedule</h2>
 
-	<%
+<form method="POST" action="Schedule">
+
+  <div class="container">
+  <%
 		if ( "error".equals("") || "error"==null) {
 	%>
 		Great
@@ -286,23 +258,24 @@ window.onclick = function(e) {
 	<%
 		}
 	%>
+    <label for="time"><b>Time</b></label>
+    <br>
+    <input type="text" placeholder="Enter time" name="time" required>
+    <br>
+	<br>
+    <label for="location"><b>Location</b></label>
+    <br>
+    <input type="text" placeholder="Enter location" name="location" required>
+    <br>
+    <br>
+    <label for="schedule"><b>Activity</b></label>
+    <br>
+    <input type="text" placeholder="Enter Activity" name="task" required>
+    <br>
+    <button type="submit">Save Entry</button>
+  </div>
 
-
-    <b>NOTES</b><br>
-
-    <textarea name="notes" rows="10" cols="50" placeholder="Enter your notes" name="notes"  required></textarea><br>
-     
-     <button type="submit">SAVE NOTES</button>
-    </div>
-
-  
-</div>
 </form>
-
 <br><br>
-
-
-
-
 </body>
-</html>     
+</html>

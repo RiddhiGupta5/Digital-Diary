@@ -11,18 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import info.digital_diary.models.*;
-import info.digital_diary.mongo.MongoCRUD;
+import info.digital_diary.mongo.*;
 
 /**
- * Servlet implementation class Keynote
+ * Servlet implementation class Schedule
  */
-@WebServlet("/Keynote")
-public class Keynote extends HttpServlet {
+@WebServlet("/Schedule")
+public class Schedule extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
+
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String page = null, userEmail = null;
 		boolean success=true;
 		
@@ -51,44 +50,52 @@ public class Keynote extends HttpServlet {
     		page = "/index.jsp";
     	}
         	
+    	
 		
-		String note = request.getParameter("notes");
+		String time = request.getParameter("time");		
+		String task = request.getParameter("task");
+		String location = request.getParameter("location");
 		
-		if ((note == null || note.equals("")))
+		if ((time == null || time.equals(""))
+				|| (task == null || task.equals(""))
+				|| (location == null || location.equals("")))
 		{
 			request.setAttribute("error", "Mandatory Parameters Missing");
-			page = "/keynote.jsp";
+			page = "/schedule.jsp";
 		}
 		
 		else {
-			Keynotes k = new Keynotes();
+			Schedules s = new Schedules();
 			
 			try
 			{
 				if(success) {
-					k.setNote(note);
-					k.setUserEmail(userEmail);
+					s.settime(time);
+					s.setActivity(task);
+					s.setDate("default");
+					s.setuseremailid(userEmail);
+					s.setLocation(location);
 				
 				
 					try {
-						MongoCRUD keynoteMongo = new MongoCRUD();
-						success = keynoteMongo.insertKeyNote(k);
+						MongoCRUD scheduleMongo = new MongoCRUD();
+						success = scheduleMongo.insertSchedule(s);
 						
 						if(success)
 						{
-							page = "/keynote.jsp";
-							request.setAttribute("error", "Note saved successfully");
+							page = "/schedule.jsp";
+							request.setAttribute("error", "Schedule saved successfully");
 						}
 						else
 						{
-							page = "/keynote.jsp";
+							page = "/schedule.jsp";
 							request.setAttribute("error", "There Was Some Problem");
 							
 						}
 					}
 					catch( Exception e)
 					{
-						page = "/keynote.jsp";
+						page = "/schedule.jsp";
 						request.setAttribute("error", "There Was Some Problem");
 					}
 				}
@@ -98,14 +105,13 @@ public class Keynote extends HttpServlet {
 			}
 			catch (IllegalArgumentException e)
 			{
-				page = "/keynote.jsp";
+				page = "/schedule.jsp";
 				request.setAttribute("error", e.getMessage());
 			}
 			
 			RequestDispatcher rd = getServletContext().getRequestDispatcher(page);
 			rd.forward(request, response);
 		}
-		
 	}
 
 }

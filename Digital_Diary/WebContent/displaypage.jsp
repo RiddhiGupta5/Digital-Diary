@@ -1,21 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title> Keynotes </title>
-</head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
-input[type=text] {
-  width: 50%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
 .navbar {
   overflow: hidden;
   background-color: #333;
@@ -69,79 +60,22 @@ input[type=text] {
 .show {
   display: block;
 }
-textarea{
-  width: 50%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-li {
-  float: left;
-}
-li a {
-  display: block;
-  color: white;
+.boxed {
+  height: 200px;
+  width: 1000px;
   text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-li a:hover:not(.active) {
-  background-color: #111;
-}
-.active {
-  background-color: #2F4F4F;
-}
-button {
-  background-color: #2F4F4F;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 10%;
-}
-button:hover {
-  opacity: 0.8;
-}
-.container {
-  padding-bottom: 50px;
-  padding: 16px;
-}
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
+  position: absolute;
+  left: 20%;
+  padding: 12px 16px;
+  margin-left: -50px;
+  border: 5px solid black ;
 }
 .topnav-right {
   float: right;
 }
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
-}
-
-
-
 </style>
+<title>${title}</title>
+</head>
 <body>
 
   <%
@@ -205,7 +139,34 @@ span.psw {
     <a href="Logout">Logout</a>
   </div>
   </div>
-
+  
+  <br><br>
+  <center>
+  <h2>${title}</h2>
+  </center>
+  
+	<br><br><br>
+	
+	<%ArrayList<String> res =  
+            (ArrayList<String>)request.getAttribute("response");
+	
+        for(String s:res){
+        pageContext.setAttribute("res", s);%>
+        
+        
+        
+		<div class="boxed">
+		<br>
+		<font size="5">
+		<% out.println(s); %>
+		</font>
+	  	</div>
+	  	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	 <% } %>
+	 
+	  	
+	 
+	 
 <script>
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
@@ -270,39 +231,5 @@ window.onclick = function(e) {
   }
 }
 </script>
-<h1 style="text-align:center">KEY NOTES</h1>
-<form method="post" action="Keynote">
-<div class="container">
-
-	<%
-		if ( "error".equals("") || "error"==null) {
-	%>
-		Great
-	<%
-		} 
-		else {
-	%>
-		<font color="red"> ${error} </font><br><br><br>
-	<%
-		}
-	%>
-
-
-    <b>NOTES</b><br>
-
-    <textarea name="notes" rows="10" cols="50" placeholder="Enter your notes" name="notes"  required></textarea><br>
-     
-     <button type="submit">SAVE NOTES</button>
-    </div>
-
-  
-</div>
-</form>
-
-<br><br>
-
-
-
-
 </body>
-</html>     
+</html>

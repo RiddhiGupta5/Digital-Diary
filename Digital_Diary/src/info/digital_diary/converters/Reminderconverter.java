@@ -1,30 +1,31 @@
-package info.digitaldiary.converters;
+package info.digital_diary.converters;
 
 import org.bson.types.ObjectId;
 
-import info.digitaldiary.models.*;
+import info.digital_diary.models.*;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
-public class Reminderconverter{
+public class ReminderConverter{
 	
-	public static DBObject toDBObject(Reminder r){
+	public static DBObject toDBObject(Reminders r){
 		BasicDBObjectBuilder builder = BasicDBObjectBuilder.start()
-				.append("useremailid", r.getuseremailid())
+				.append("userEmail", r.getuseremailid())
 				.append("time",r.gettime())
 				.append("date",r.getdate())
-				.append("Location",r.getlocation())
-				.append("Category",r.getcategory())
-				.append("Description",r.getdesc());
+				.append("location",r.getlocation())
+				.append("category",r.getcategory())
+				.append("description",r.getdesc());
 		return builder.get();
 	}
-	public static Reminder toUser (DBObject doc){
-		Reminder r=new Reminder();
-		s.setuseremailid((String) doc.get("useremailid"));
-		s.setdate((String) doc.get("date"));
-		s.settime((String) doc.get("time"));
-		s.setlocation((String) doc.get("Location")); 
-		s.setcategory((String) doc.get("Category")); 
-		s.setdesc((String) doc.get("Description")); 
+	public static Reminders toReminder (DBObject doc){
+		Reminders r=new Reminders();
+		r.setuseremailid((String) doc.get("userEmail"));
+		r.setdate((String) doc.get("date"));
+		r.settime((String) doc.get("time"));
+		r.setlocation((String) doc.get("location")); 
+		r.setcategory((String) doc.get("category")); 
+		r.setdesc((String) doc.get("description"));
+		return r; 
 
 	}
 }

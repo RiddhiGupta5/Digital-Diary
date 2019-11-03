@@ -8,7 +8,7 @@
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 form {border: 3px solid #f1f1f1;}
-input[type=text] {
+input[type=text],input[type = text] {
   width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -69,34 +69,6 @@ input[type=text] {
 .show {
   display: block;
 }
-textarea{
-  width: 50%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-li {
-  float: left;
-}
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-li a:hover:not(.active) {
-  background-color: #111;
-}
 .active {
   background-color: #2F4F4F;
 }
@@ -129,20 +101,13 @@ span.psw {
   float: right;
 }
 /* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
-}
 </style>
-<title>Contacts</title>
+
+<title> Reminders </title>
+
 </head>
 <body>
-
+  
   <%
 		String userName = null;
 		Cookie[] cookies = request.getCookies();
@@ -154,7 +119,7 @@ span.psw {
 		if(userName == null) response.sendRedirect("index.jsp");
 	%>
 
-  <div class="navbar">
+    <div class="navbar">
     <div class="dropdown">
     <button class="dropbtn" onclick="myFunction1()">Reminders
       <i class="fa fa-caret-down"></i>
@@ -204,101 +169,140 @@ span.psw {
     <a href="Logout">Logout</a>
   </div>
   </div>
-  
-	<h1 style="text-align:center">CONTACTS</h1>
-	<form method="post" action="Contact">
-	<div class="container">
-	<%
-		if ( "error".equals("") || "error"==null) {
-	%>
-		Great
-	<%
-		} 
-		else {
-	%>
-		<font color="red"> ${error} </font><br><br><br>
-	<%
-		}
-	%>
-	<label for="name"><b>NAME</b></label><br>
-	  <input type="text" placeholder="Enter name" name="name" required><br><br>
-	<label for="pno"><b>PHONE NO</b></label><br>
-	  <input type="number" placeholder="Enter phone no" name="phone_no" required><br><br>
-	<label for="email"><b>EMAIL ID</b></label><br>
-	 <input type="text" placeholder="Enter email id" name="email" required><br><br>
-	<label for="address"><b>ADDRESS</b></label><br>
-	 <input type="text" placeholder="Enter address" name="address" required><br><br>
 
-<button type="submit">SAVE CONTACTS</button>
-</div>
+    <h2>Reminders</h2>
 
-</form>
-<br><br>
-<script>
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction1() {
-  document.getElementById("myDropdown1").classList.toggle("show");
-}
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-  var myDropdown = document.getElementById("myDropdown1");
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
+    <form action="Reminder" method="POST">
+
+      <div class="container">
+      
+      		<%
+		        if ( "error".equals("") || "error"==null) {
+		    %>
+		    	Great
+		    <%
+		        } 
+		        else {
+		    %>
+		        <font color="red"> ${error} </font><br><br><br>
+		    <%
+		        }
+		    %>
+      	
+        <label for="date"><b>Date</b></label>
+        <br>
+        <input type="text" placeholder="Enter Date" name="date" required>
+        <br>
+        <br>
+        <label for="time"><b>Time</b></label>
+        <br>
+        <input type="text" placeholder="Enter time" name="time" required>
+        <br>
+        <br>
+        <label for="location"><b>Location</b></label>
+        <br>
+        <input type="text" placeholder="Enter location" name="location" required>
+        <br>
+        <br>
+        <label for="reminder"><b>Reminder</b></label>
+        <br>
+        <input type="text" placeholder="Enter Reminder" name="reminder" required>
+        <br>
+	    <br>
+	    <label for="description"><b>Description</b></label>
+	    <br>
+	    <textarea name="description" placeholder="Enter Details" cols="40" rows="5"></textarea>
+	    <br>
+	    <br>
+        <label>
+          <input type="radio" checked="checked" name="category" value="Meeting"> Meeting
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="category" value="Deadline"> Deadline
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="category" value="Event"> Event
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="category" value="Travel"> Travel
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="category" value="Others"> Others
+        </label>
+        <br><br>
+        <button type="submit">Save Reminder</button>
+      </div>
+      <br>
+      </form>
+      <br><br>
+  <script>
+  /* When the user clicks on the button,
+  toggle between hiding and showing the dropdown content */
+  function myFunction1() {
+    document.getElementById("myDropdown1").classList.toggle("show");
+  }
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(e) {
+    if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown1");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
     }
   }
-}
-function myFunction2() {
-  document.getElementById("myDropdown2").classList.toggle("show");
-}
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-  var myDropdown = document.getElementById("myDropdown2");
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
+  function myFunction2() {
+    document.getElementById("myDropdown2").classList.toggle("show");
+  }
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(e) {
+    if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown2");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
     }
   }
-}
-function myFunction3() {
-  document.getElementById("myDropdown3").classList.toggle("show");
-}
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-  var myDropdown = document.getElementById("myDropdown3");
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
+  function myFunction3() {
+    document.getElementById("myDropdown3").classList.toggle("show");
+  }
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(e) {
+    if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown3");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
     }
   }
-}
-function myFunction4() {
-  document.getElementById("myDropdown4").classList.toggle("show");
-}
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-  var myDropdown = document.getElementById("myDropdown4");
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
+  function myFunction4() {
+    document.getElementById("myDropdown4").classList.toggle("show");
+  }
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(e) {
+    if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown4");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
     }
   }
-}
-function myFunction5() {
-  document.getElementById("myDropdown5").classList.toggle("show");
-}
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(e) {
-  if (!e.target.matches('.dropbtn')) {
-  var myDropdown = document.getElementById("myDropdown5");
-    if (myDropdown.classList.contains('show')) {
-      myDropdown.classList.remove('show');
+  function myFunction5() {
+    document.getElementById("myDropdown5").classList.toggle("show");
+  }
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function(e) {
+    if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown5");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
     }
   }
-}
-</script>
+  </script>
+
 </body>
 </html>
-    
-  

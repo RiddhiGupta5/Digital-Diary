@@ -10,19 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import info.digital_diary.models.*;
+import info.digital_diary.models.Reminders;
 import info.digital_diary.mongo.MongoCRUD;
 
 /**
- * Servlet implementation class Keynote
+ * Servlet implementation class Reminder
  */
-@WebServlet("/Keynote")
-public class Keynote extends HttpServlet {
+@WebServlet("/Reminder")
+public class Reminder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String page = null, userEmail = null;
 		boolean success=true;
 		
@@ -38,7 +36,7 @@ public class Keynote extends HttpServlet {
     	else
     	{
     		success = false;
-    		page = "/index.jsp";
+    		page = "/";
     	}
         
     	if(emailCookie != null){
@@ -48,47 +46,66 @@ public class Keynote extends HttpServlet {
     	else
     	{
     		success = false;
-    		page = "/index.jsp";
+    		page = "/";
     	}
         	
+    	
 		
-		String note = request.getParameter("notes");
+		String date = request.getParameter("date");		
+		String time = request.getParameter("time");
+		String location = request.getParameter("location");
+		String description = request.getParameter("description");
+		String category = request.getParameter("category");
 		
-		if ((note == null || note.equals("")))
+		
+		
+		if ((date == null || date.equals(""))
+				|| (time == null || time.equals(""))
+				|| (location == null || location.equals(""))
+				|| (description == null || description.equals(""))
+				|| (category == null || category.equals("")))
 		{
 			request.setAttribute("error", "Mandatory Parameters Missing");
-			page = "/keynote.jsp";
+			page = "/reminder.jsp";
+			
 		}
 		
+		
+		
 		else {
-			Keynotes k = new Keynotes();
+			
+			Reminders r = new Reminders();
 			
 			try
 			{
 				if(success) {
-					k.setNote(note);
-					k.setUserEmail(userEmail);
+					r.setcategory(category);
+					r.setdate(date);
+					r.setdesc(description);
+					r.setlocation(location);
+					r.settime(time);
+					r.setuseremailid(userEmail);
 				
 				
 					try {
-						MongoCRUD keynoteMongo = new MongoCRUD();
-						success = keynoteMongo.insertKeyNote(k);
+						MongoCRUD reviewMongo = new MongoCRUD();
+						success = reviewMongo.insertReminder(r);
 						
 						if(success)
 						{
-							page = "/keynote.jsp";
-							request.setAttribute("error", "Note saved successfully");
+							page = "/reminder.jsp";
+							request.setAttribute("error", "Review saved successfully");
 						}
 						else
 						{
-							page = "/keynote.jsp";
+							page = "/reminder.jsp";
 							request.setAttribute("error", "There Was Some Problem");
 							
 						}
 					}
 					catch( Exception e)
 					{
-						page = "/keynote.jsp";
+						page = "/reminderjsp";
 						request.setAttribute("error", "There Was Some Problem");
 					}
 				}
@@ -98,14 +115,17 @@ public class Keynote extends HttpServlet {
 			}
 			catch (IllegalArgumentException e)
 			{
-				page = "/keynote.jsp";
+				page = "/reminder.jsp";
 				request.setAttribute("error", e.getMessage());
 			}
 			
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(page);
-			rd.forward(request, response);
+			
 		}
 		
+		RequestDispatcher rd = getServletContext().getRequestDispatcher(page);
+		rd.forward(request, response);
+		
 	}
-
 }
+
+

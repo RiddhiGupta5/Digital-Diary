@@ -88,7 +88,8 @@ public class Contact extends HttpServlet {
 						
 						if(success)
 						{
-							page = "/dashboard.jsp";
+							page = "/contact.jsp";
+							request.setAttribute("error", "Contact Saved Successfully");
 						}
 						else
 						{
